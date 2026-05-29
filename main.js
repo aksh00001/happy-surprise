@@ -471,6 +471,8 @@ function handleEnter() {
             }
             .meteor {
               position: absolute;
+              top: 0;
+              left: 0;
               width: 1.5px;
               height: 120px;
               background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
@@ -481,18 +483,18 @@ function handleEnter() {
             }
             @keyframes meteorShower {
               0% {
-                transform: translate3d(var(--start-x), var(--start-y), 0) rotate(-35deg) scale(0.2);
+                transform: translate3d(0, 0, 0) rotate(-35deg) scale(0.2);
                 opacity: 0;
               }
               10% {
                 opacity: 0.85;
               }
               40% {
-                transform: translate3d(calc(var(--start-x) - 350px), calc(var(--start-y) + 280px), 0) rotate(-35deg) scale(1);
+                transform: translate3d(-350px, 280px, 0) rotate(-35deg) scale(1);
                 opacity: 0;
               }
               100% {
-                transform: translate3d(calc(var(--start-x) - 350px), calc(var(--start-y) + 280px), 0) rotate(-35deg) scale(1);
+                transform: translate3d(-350px, 280px, 0) rotate(-35deg) scale(1);
                 opacity: 0;
               }
             }
@@ -789,8 +791,8 @@ function handleEnter() {
             const duration = Math.random() * 3 + 4; // 4s to 7s
             const delay = Math.random() * 5; // 0s to 5s delay
             
-            meteor.style.setProperty('--start-x', startX + 'px');
-            meteor.style.setProperty('--start-y', startY + 'px');
+            meteor.style.left = startX + 'px';
+            meteor.style.top = startY + 'px';
             meteor.style.animationDuration = duration + 's';
             meteor.style.animationDelay = delay + 's';
             
