@@ -459,6 +459,44 @@ function handleEnter() {
               100% { transform: translate(-50%, -50%) scale(1.08); text-shadow: 0 0 40px rgba(255, 77, 109, 1), 0 0 60px rgba(255, 77, 109, 0.8); }
             }
             
+            .meteors-container {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              pointer-events: none;
+              z-index: 3;
+            }
+            .meteor {
+              position: absolute;
+              width: 1.5px;
+              height: 120px;
+              background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+              transform: rotate(-35deg);
+              opacity: 0;
+              pointer-events: none;
+              animation: meteorShower 6s linear infinite;
+            }
+            @keyframes meteorShower {
+              0% {
+                transform: translate3d(var(--start-x), var(--start-y), 0) rotate(-35deg) scale(0.2);
+                opacity: 0;
+              }
+              10% {
+                opacity: 0.85;
+              }
+              40% {
+                transform: translate3d(calc(var(--start-x) - 350px), calc(var(--start-y) + 280px), 0) rotate(-35deg) scale(1);
+                opacity: 0;
+              }
+              100% {
+                transform: translate3d(calc(var(--start-x) - 350px), calc(var(--start-y) + 280px), 0) rotate(-35deg) scale(1);
+                opacity: 0;
+              }
+            }
+            
             @media (max-width: 768px) {
               .heart-center-text { font-size: 3.2rem; }
               .heart-photo { width: 90px; height: 110px; padding: 5px 5px 15px 5px; }
@@ -737,6 +775,29 @@ function handleEnter() {
           cx.closePath();
           cx.fill();
         }
+        // Setup meteor shower
+        function startMeteors() {
+          const container = document.getElementById('meteors-container');
+          if (!container) return;
+          const numMeteors = 15;
+          for (let i = 0; i < numMeteors; i++) {
+            const meteor = document.createElement('div');
+            meteor.className = 'meteor';
+            
+            const startX = Math.random() * window.innerWidth + 200; // Start offset
+            const startY = Math.random() * (window.innerHeight * 0.4) - 100;
+            const duration = Math.random() * 3 + 4; // 4s to 7s
+            const delay = Math.random() * 5; // 0s to 5s delay
+            
+            meteor.style.setProperty('--start-x', startX + 'px');
+            meteor.style.setProperty('--start-y', startY + 'px');
+            meteor.style.animationDuration = duration + 's';
+            meteor.style.animationDelay = delay + 's';
+            
+            container.appendChild(meteor);
+          }
+        }
+        startMeteors();
         animNew();
       }, 1000);
     }, 800);
