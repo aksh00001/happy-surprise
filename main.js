@@ -487,14 +487,14 @@ function handleEnter() {
                 opacity: 0;
               }
               10% {
-                opacity: 0.85;
+                opacity: 0.95;
               }
               40% {
-                transform: translate3d(-350px, 280px, 0) rotate(-35deg) scale(1);
+                transform: translate3d(-800px, 600px, 0) rotate(-35deg) scale(1);
                 opacity: 0;
               }
               100% {
-                transform: translate3d(-350px, 280px, 0) rotate(-35deg) scale(1);
+                transform: translate3d(-800px, 600px, 0) rotate(-35deg) scale(1);
                 opacity: 0;
               }
             }
@@ -786,8 +786,8 @@ function handleEnter() {
             const meteor = document.createElement('div');
             meteor.className = 'meteor';
             
-            const startX = Math.random() * window.innerWidth + 200; // Start offset
-            const startY = Math.random() * (window.innerHeight * 0.4) - 100;
+            const startX = Math.random() * (window.innerWidth * 0.9) + (window.innerWidth * 0.2); // Start across middle and right
+            const startY = Math.random() * (window.innerHeight * 0.4) - 150; // Start high up or above screen
             const duration = Math.random() * 3 + 4; // 4s to 7s
             const delay = Math.random() * 5; // 0s to 5s delay
             
