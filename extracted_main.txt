@@ -1,0 +1,106 @@
+Created At: 2026-05-29T18:59:59Z
+Completed At: 2026-05-29T18:59:59Z
+File Path: `file:///c:/Users/akshu/Desktop/happy/main.js`
+Total Lines: 465
+Total Bytes: 15938
+Showing lines 1 to 465
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: // --- Configuration ---
+2: const CORRECT_PASSCODE = "300824"; // We can change this later!
+3: const PASSCODE_LENGTH = 6;
+4: 
+5: // --- DOM Elements ---
+6: const loadingScreen = document.getElementById('loading-screen');
+7: const mainContent = document.getElementById('main-content');
+8: const balloonsContainer = document.getElementById('balloons-container');
+9: const dots = document.querySelectorAll('.dot');
+10: const keys = document.querySelectorAll('.key[data-key]');
+11: const keyClear = document.getElementById('key-clear');
+12: const keyEnter = document.getElementById('key-enter');
+13: const errorMsg = document.getElementById('error-msg');
+14: const canvas = document.getElementById('particles-canvas');
+15: const ctx = canvas.getContext('2d');
+16: 
+17: let currentPasscode = "";
+18: 
+19: // --- Particles Background Logic ---
+20: canvas.width = window.innerWidth;
+21: canvas.height = window.innerHeight;
+22: 
+23: const particlesArray = [];
+24: const numberOfParticles = 50; // Adjust for density
+25: 
+26: class Particle {
+27:   constructor() {
+28:     this.x = Math.random() * canvas.width;
+29:     this.y = Math.random() * canvas.height;
+30:     this.size = Math.random() * 3 + 1;
+31:     this.speedX = Math.random() * 1 - 0.5;
+32:     this.speedY = Math.random() * 1 - 0.5;
+33:     this.opacity = Math.random() * 0.5 + 0.1;
+34:   }
+35:   update() {
+36:     this.x += this.speedX;
+37:     this.y += this.speedY;
+38: 
+39:     if (this.x > canvas.width) this.x = 0;
+40:     else if (this.x < 0) this.x = canvas.width;
+41:     
+42:     if (this.y > canvas.height) this.y = 0;
+43:     else if (this.y < 0) thi
+<truncated 14569 bytes>
+12:     this.width = parent.clientWidth;
+413:     this.height = parent.clientHeight;
+414:     
+415:     this.canvas.width = this.width * this.dpr;
+416:     this.canvas.height = this.height * this.dpr;
+417:     this.canvas.style.width = `${this.width}px`;
+418:     this.canvas.style.height = `${this.height}px`;
+419:     
+420:     this.cols = Math.ceil(this.width / (this.squareSize + this.gridGap));
+421:     this.rows = Math.ceil(this.height / (this.squareSize + this.gridGap));
+422:     
+423:     this.squares = new Float32Array(this.cols * this.rows);
+424:     for (let i = 0; i < this.squares.length; i++) {
+425:       this.squares[i] = Math.random() * this.maxOpacity;
+426:     }
+427:     
+428:     if (!this.lastTime) {
+429:       this.lastTime = performance.now();
+430:       requestAnimationFrame(this.animate);
+431:     }
+432:   }
+433:   
+434:   animate(time) {
+435:     const deltaTime = Math.min((time - this.lastTime) / 1000, 0.1); // Cap delta time
+436:     this.lastTime = time;
+437:     
+438:     // Update
+439:     for (let i = 0; i < this.squares.length; i++) {
+440:       if (Math.random() < this.flickerChance * deltaTime) {
+441:         this.squares[i] = Math.random() * this.maxOpacity;
+442:       }
+443:     }
+444:     
+445:     // Draw
+446:     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+447:     for (let i = 0; i < this.cols; i++) {
+448:       for (let j = 0; j < this.rows; j++) {
+449:         const opacity = this.squares[i * this.rows + j];
+450:         this.ctx.fillStyle = `${this.color}${opacity})`;
+451:         this.ctx.fillRect(
+452:           i * (this.squareSize + this.gridGap) * this.dpr,
+453:           j * (this.squareSize + this.gridGap) * this.dpr,
+454:           this.squareSize * this.dpr,
+455:           this.squareSize * this.dpr
+456:         );
+457:       }
+458:     }
+459:     
+460:     requestAnimationFrame(this.animate);
+461:   }
+462: }
+463: 
+464: new FlickeringGrid('flickering-grid');
+465: 
+The above content shows the entire, complete file contents of the requested file.

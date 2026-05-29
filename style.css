@@ -1,0 +1,517 @@
+/* --- Base Variables & Setup --- */
+:root {
+  --bg-color: #0b0b0f;
+  --panel-bg: rgba(255, 255, 255, 0.05);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: #aaaaaa;
+  --accent: #ff4d6d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden; /* Prevent scrolling */
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+/* --- Animated Background Blobs --- */
+.bg-animated {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  animation: float 15s infinite ease-in-out alternate;
+  opacity: 0.6;
+}
+
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #ff4d6d 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #ffb3c1 0%, transparent 70%);
+  bottom: -200px;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #c9184a 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+#particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* --- Loading Screen --- */
+.loading-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-out;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-text {
+  font-family: 'Caveat', cursive;
+  font-size: 3rem;
+  color: var(--accent);
+  margin-top: 20px;
+  z-index: 51;
+  text-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+  animation: pulseText 2s infinite;
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.balloons-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  font-size: 3rem;
+  animation: rise linear forwards;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(15deg);
+  }
+}
+
+/* --- Main Content --- */
+.main-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease;
+}
+
+.main-content.hidden {
+  display: none;
+}
+
+/* 3D Container Scroll Intro Animation */
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 1100px;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  perspective: 2000px;
+  animation: containerScrollIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes containerScrollIn {
+  0% {
+    opacity: 0;
+    transform: translateY(150px) translateZ(-500px) rotateX(20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0) rotateX(0deg);
+  }
+}
+
+/* --- Polaroid --- */
+.polaroid-wrapper {
+  perspective: 1000px;
+}
+
+.polaroid {
+  background: white;
+  padding: 15px 15px 50px 15px;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+              0 0 20px rgba(255, 77, 109, 0.2); /* Soft red glow */
+  transform: rotate(-5deg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  width: 320px;
+  will-change: transform;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+              0 0 30px rgba(255, 77, 109, 0.4); /* Stronger glow on hover */
+}
+
+.tape {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 100px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  border-radius: 2px;
+  backdrop-filter: blur(2px);
+  z-index: 2;
+}
+
+.photo-container {
+  width: 100%;
+  height: 350px;
+  background-color: #eee;
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
+}
+
+.photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+}
+
+/* Dynamic Image Downscaling Logic */
+.blur-load {
+  background-size: cover;
+  background-position: center;
+}
+
+.blur-load .placeholder {
+  filter: blur(10px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blur-load.loaded .placeholder {
+  opacity: 0;
+}
+
+.blur-load .high-res {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 1s ease-in-out;
+}
+
+.blur-load.loaded .high-res {
+  opacity: 1 !important;
+}
+
+.caption {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: #333;
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  width: calc(100% - 30px);
+}
+
+/* --- Keypad Panel (Glassmorphism & Aceternity Shadow) --- */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  box-shadow: 
+    0 -10px 40px rgba(0, 0, 0, 0.4), /* Top shadow */
+    0 30px 60px rgba(0, 0, 0, 0.6),  /* Bottom shadow */
+    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner rim highlight */
+  position: relative;
+  overflow: hidden; /* For flickering grid */
+  will-change: transform;
+}
+
+#flickering-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lock-icon {
+  margin-bottom: 20px;
+  color: var(--accent);
+  background: rgba(255, 77, 109, 0.1);
+  padding: 15px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(255, 77, 109, 0.2);
+}
+
+.passcode-title {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.dots-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.dot.filled {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.dot.error {
+  background-color: #ef233c;
+  border-color: #ef233c;
+  box-shadow: 0 0 10px #ef233c;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.key {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-family: 'Outfit', sans-serif;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 auto;
+  transition: all 0.2s ease;
+}
+
+.key:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.key:active {
+  transform: scale(0.95);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.error-msg {
+  color: #ef233c;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  height: 20px;
+}
+
+/* Animations */
+.shake {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(4px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+  40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+/* --- Envelope Animation --- */
+.envelope-container {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin-top: 50px;
+  transition: opacity 1s ease;
+  perspective: 1000px;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.envelope-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #c94050;
+  border-radius: 5px;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.1);
+  z-index: 1;
+}
+
+.envelope-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ff5e78;
+  border-radius: 5px;
+  z-index: 3;
+  clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ff4d6d;
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
+  transform-origin: top;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 4;
+}
+
+.envelope-flap.open {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.photos-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.env-photo {
+  position: absolute;
+  width: 140px;
+  height: 160px;
+  object-fit: cover;
+  border: 8px solid white;
+  border-bottom: 25px solid white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(50px) scale(0.5);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.env-photo.pop-out {
+  opacity: 1;
+}
+
+.photo-1.pop-out { transform: translate(-220px, -150px) rotate(-15deg) scale(1.1); }
+.photo-2.pop-out { transform: translate(-110px, -180px) rotate(-5deg) scale(1.1); }
+.photo-3.pop-out { transform: translate(0px, -190px) rotate(0deg) scale(1.1); z-index: 5;}
+.photo-4.pop-out { transform: translate(110px, -180px) rotate(5deg) scale(1.1); }
+.photo-5.pop-out { transform: translate(220px, -150px) rotate(15deg) scale(1.1); }
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

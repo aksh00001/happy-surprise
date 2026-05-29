@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surprise For You ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="bg-animated">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+    
+    <!-- Particles -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Balloon Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="balloons-container" id="balloons-container"></div>
+      <h1 class="loading-text">Loading a little surprise...</h1>
+    </div>
+
+    <!-- Main Content: Passcode Page -->
+    <div id="main-content" class="main-content hidden">
+      <div class="container">
+        
+        <!-- Left Side: Polaroid -->
+        <div class="polaroid-wrapper">
+          <div class="polaroid" id="polaroid-card">
+            <div class="tape"></div>
+            <div class="photo-container blur-load" id="photo-container">
+              <img src="./placeholder.png" id="blur-img" alt="Placeholder" class="photo-img placeholder">
+              <img src="./loading.jpg" id="high-res-img" alt="Happy Birthday" class="photo-img high-res" style="opacity: 0;">
+            </div>
+            <div class="caption">Happy Birthday Baba! ✨💖</div>
+          </div>
+        </div>
+
+        <!-- Right Side: Keypad Panel -->
+        <div class="glass-panel keypad-wrapper" id="keypad-card">
+          <canvas id="flickering-grid"></canvas>
+          
+          <div class="lock-icon" style="z-index: 2; position: relative;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          
+          <h2 class="passcode-title" style="z-index: 2; position: relative;">Enter Passcode</h2>
+          
+          <div class="dots-container" id="dots-container" style="z-index: 2; position: relative;">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+
+          <div class="keypad" style="z-index: 2; position: relative;">
+            <button class="key" data-key="1">1</button>
+            <button class="key" data-key="2">2</button>
+            <button class="key" data-key="3">3</button>
+            <button class="key" data-key="4">4</button>
+            <button class="key" data-key="5">5</button>
+            <button class="key" data-key="6">6</button>
+            <button class="key" data-key="7">7</button>
+            <button class="key" data-key="8">8</button>
+            <button class="key" data-key="9">9</button>
+            <button class="key" id="key-clear" style="font-size: 1rem;">C</button>
+            <button class="key" data-key="0">0</button>
+            <button class="key" id="key-enter" style="font-size: 1.2rem;">➔</button>
+          </div>
+
+          <div class="error-msg" id="error-msg" style="z-index: 2; position: relative;">Oops! Try again!</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Script -->
+    <script src="./main.js"></script>
+  </body>
+</html>

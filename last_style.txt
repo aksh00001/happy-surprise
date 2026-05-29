@@ -1,0 +1,171 @@
+Created At: 2026-05-29T18:43:12Z
+Completed At: 2026-05-29T18:43:12Z
+File Path: `file:///c:/Users/akshu/Desktop/happy/style.css`
+Total Lines: 474
+Total Bytes: 10160
+Showing lines 1 to 474
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: :root {
+2:   --text-color: #fff;
+3:   --glass-bg: rgba(255, 255, 255, 0.08);
+4:   --glass-border: rgba(255, 255, 255, 0.2);
+5:   --key-hover: rgba(255, 255, 255, 0.2);
+6:   --polaroid-bg: #fff;
+7:   --accent: #ff4d4d;
+8: }
+9: 
+10: * {
+11:   box-sizing: border-box;
+12:   margin: 0;
+13:   padding: 0;
+14: }
+15: 
+16: body {
+17:   font-family: 'Outfit', sans-serif;
+18:   background-color: #3b060c; /* Deep rich base */
+19:   color: var(--text-color);
+20:   height: 100vh;
+21:   overflow: hidden;
+22:   position: relative;
+23: }
+24: 
+25: /* Dynamic Animated Gradient Background */
+26: .bg-animated {
+27:   position: absolute;
+28:   top: 0;
+29:   left: 0;
+30:   width: 100vw;
+31:   height: 100vh;
+32:   overflow: hidden;
+33:   z-index: 1;
+34: }
+35: 
+36: .blob {
+37:   position: absolute;
+38:   filter: blur(80px);
+39:   border-radius: 50%;
+40:   opacity: 0.6;
+41:   animation: float 20s infinite alternate ease-in-out;
+42: }
+43: 
+44: .blob-1 {
+45:   width: 600px;
+46:   height: 600px;
+47:   background: #a31526;
+48:   top: -100px;
+49:   left: -100px;
+50:   animation-delay: 0s;
+51: }
+52: 
+53: .blob-2 {
+54:   width: 500px;
+55:   height: 500px;
+56:   background: #e6223b;
+57:   bottom: -50px;
+58:   right: -100px;
+59:   animation-delay: -5s;
+60: }
+61: 
+62: .blob-3 {
+63:   width: 400px;
+64:   height: 400px;
+65:   background: #ff5e78;
+66:   top: 40%;
+67:   left: 40%;
+68:   animation-delay: -10s;
+69: }
+70: 
+71: @keyframes float {
+72:   0% { transform: translate(0, 0) scale(1); }
+73:   33% { transform: translate(30px, -50px) scale(1.1); }
+74:   66% { transform: translate(-20px, 20px) scale(0.9); }
+75:   100% { transfo
+<truncated 8838 bytes>
+shadow: 0 8px 20px rgba(0,0,0,0.2);
+389: }
+390: 
+391: .key:active {
+392:   transform: translateY(2px) scale(0.95);
+393:   background: rgba(255, 255, 255, 0.25);
+394: }
+395: 
+396: .action-key {
+397:   font-size: 1.1rem;
+398:   font-weight: 500;
+399:   letter-spacing: 1px;
+400: }
+401: 
+402: .error-msg {
+403:   margin-top: 20px;
+404:   color: #ff7676;
+405:   font-size: 0.95rem;
+406:   font-weight: 300;
+407:   letter-spacing: 1px;
+408:   opacity: 0;
+409:   transition: opacity 0.3s;
+410:   height: 20px;
+411: }
+412: 
+413: .error-msg.visible {
+414:   opacity: 1;
+415:   animation: shake 0.5s;
+416: }
+417: 
+418: @keyframes shake {
+419:   0%, 100% { transform: translateX(0); }
+420:   25% { transform: translateX(-8px); }
+421:   50% { transform: translateX(8px); }
+422:   75% { transform: translateX(-8px); }
+423: }
+424: 
+425: @media (max-width: 768px) {
+426:   .container {
+427:     flex-direction: column;
+428:     justify-content: center;
+429:     gap: 40px;
+430:   }
+431:   .polaroid {
+432:     transform: rotate(0deg);
+433:   }
+434:   .polaroid:hover {
+435:     transform: scale(1.02);
+436:   }
+437:   .glass-panel {
+438:     padding: 30px;
+439:   }
+440:   .key {
+441:     width: 60px;
+442:     height: 60px;
+443:   }
+444:   .teddy-container {
+445:     width: 120px;
+446:     bottom: -10px;
+447:     right: -10px;
+448:   }
+449: }
+450: 
+451: /* Cute Teddy Bear */
+452: .teddy-container {
+453:   position: absolute;
+454:   bottom: -15px;
+455:   right: -15px;
+456:   width: 180px;
+457:   z-index: 20;
+458:   pointer-events: none; /* so it doesn't block clicks */
+459: }
+460: 
+461: .teddy-img {
+462:   width: 100%;
+463:   height: auto;
+464:   filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+465:   transform-origin: bottom center;
+466:   animation: wave 1.5s infinite alternate ease-in-out;
+467: }
+468: 
+469: @keyframes wave {
+470:   0%, 100% { transform: rotate(0deg); }
+471:   25% { transform: rotate(-8deg); }
+472:   75% { transform: rotate(12deg); }
+473: }
+474: 
+The above content shows the entire, complete file contents of the requested file.

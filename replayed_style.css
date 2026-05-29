@@ -1,0 +1,164 @@
+:root {
+  --text-color: #fff;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --key-hover: rgba(255, 255, 255, 0.2);
+  --polaroid-bg: #fff;
+  --accent: #ff4d4d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #3b060c; /* Deep rich base */
+  color: var(--text-color);
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Dynamic Animated Gradient Background */
+.bg-animated {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.blob {
+  position: absolute;
+  filter: blur(80px);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: #a31526;
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: #e6223b;
+  bottom: -50px;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  width: 400px;
+  height: 400px;
+  background: #ff5e78;
+  top: 40%;
+  left: 40%;
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transfo
+<truncated 8838 bytes>
+shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.key:active {
+  transform: translateY(2px) scale(0.95);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.action-key {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.error-msg {
+  margin-top: 20px;
+  color: #ff7676;
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  height: 20px;
+}
+
+.error-msg.visible {
+  opacity: 1;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+  75% { transform: translateX(-8px); }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+  .polaroid {
+    transform: rotate(0deg);
+  }
+  .polaroid:hover {
+    transform: scale(1.02);
+  }
+  .glass-panel {
+    padding: 30px;
+  }
+  .key {
+    width: 60px;
+    height: 60px;
+  }
+  .teddy-container {
+    width: 120px;
+    bottom: -10px;
+    right: -10px;
+  }
+}
+
+/* Cute Teddy Bear */
+.teddy-container {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 180px;
+  z-index: 20;
+  pointer-events: none; /* so it doesn't block clicks */
+}
+
+.teddy-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+  transform-origin: bottom center;
+  animation: wave 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(12deg); }
+}
+
+The above content shows the entire, complete file contents of the requested file.
