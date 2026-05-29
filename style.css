@@ -1,6 +1,6 @@
 /* --- Base Variables & Setup --- */
 :root {
-  --bg-color: #0b0b0f;
+  --bg-color: #3b060c;
   --panel-bg: rgba(255, 255, 255, 0.05);
   --panel-border: rgba(255, 255, 255, 0.1);
   --text-primary: #ffffff;
@@ -135,15 +135,29 @@ body {
 
 .balloon {
   position: absolute;
-  bottom: -100px;
-  font-size: 3rem;
-  animation: rise linear forwards;
+  bottom: -150px;
+  width: 60px;
+  height: 75px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  box-shadow: inset -10px -10px 15px rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.3);
+  animation: floatUp ease-in forwards;
 }
 
-@keyframes rise {
-  to {
-    transform: translateY(-110vh) rotate(15deg);
-  }
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 15px solid var(--tail-color);
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
 }
 
 /* --- Main Content --- */
@@ -192,11 +206,12 @@ body {
 }
 
 .polaroid {
-  background: white;
-  padding: 15px 15px 50px 15px;
-  border-radius: 4px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-              0 0 20px rgba(255, 77, 109, 0.2); /* Soft red glow */
+  background: #fdfdfd;
+  padding: 15px 15px 95px 15px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 
+              0 0 25px rgba(255, 77, 109, 0.25); /* Soft premium glow */
   transform: rotate(-5deg);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   position: relative;
@@ -237,7 +252,9 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.5s ease;
+  transform: scale(1.68); /* Zoom in to crop out the status bar and black padding */
+  transform-origin: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* Dynamic Image Downscaling Logic */
@@ -274,12 +291,15 @@ body {
 
 .caption {
   font-family: 'Caveat', cursive;
-  font-size: 1.8rem;
-  color: #333;
+  font-size: 1.7rem;
+  color: #222;
   text-align: center;
   position: absolute;
-  bottom: 10px;
+  bottom: 22px;
+  left: 15px;
   width: calc(100% - 30px);
+  line-height: 1.35;
+  font-weight: 600;
 }
 
 /* --- Keypad Panel (Glassmorphism & Aceternity Shadow) --- */
@@ -514,4 +534,37 @@ body {
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(30px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Cute Teddy Bear styling */
+.teddy-container {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 110px; /* Small, cute non-blocking size */
+  z-index: 20;
+  pointer-events: none; /* Allows user to click buttons behind if needed */
+  transition: transform 0.3s ease;
+}
+
+.teddy-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 5px 12px rgba(0,0,0,0.4));
+  transform-origin: bottom center;
+  animation: wave 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(12deg); }
+}
+
+@media (max-width: 768px) {
+  .teddy-container {
+    width: 90px; /* Even smaller on mobile screens */
+    bottom: -10px;
+    right: -10px;
+  }
 }

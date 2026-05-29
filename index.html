@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css?v=6">
   </head>
   <body>
     <!-- Animated Background -->
@@ -34,11 +34,10 @@
         <div class="polaroid-wrapper">
           <div class="polaroid" id="polaroid-card">
             <div class="tape"></div>
-            <div class="photo-container blur-load" id="photo-container">
-              <img src="./placeholder.png" id="blur-img" alt="Placeholder" class="photo-img placeholder">
-              <img src="./loading.jpg" id="high-res-img" alt="Happy Birthday" class="photo-img high-res" style="opacity: 0;">
+            <div class="photo-container" id="photo-container">
+              <img src="./public/loading.jpg" alt="I still love you, Baba" class="photo-img">
             </div>
-            <div class="caption">Happy Birthday Baba! ✨💖</div>
+            <div class="caption">Just a reminder that I still love you, Baba... ❤️</div>
           </div>
         </div>
 
@@ -80,12 +79,17 @@
           </div>
 
           <div class="error-msg" id="error-msg" style="z-index: 2; position: relative;">Oops! Try again!</div>
+          
+          <!-- Waving Teddy Bear -->
+          <div class="teddy-container">
+            <img src="./public/teddy_transparent.png" alt="Waving Teddy" class="teddy-img">
+          </div>
         </div>
 
       </div>
     </div>
 
     <!-- Script -->
-    <script src="./main.js"></script>
+    <script src="./main.js?v=6"></script>
   </body>
 </html>
